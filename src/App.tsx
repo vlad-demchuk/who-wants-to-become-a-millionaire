@@ -8,18 +8,29 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       {!startGame ? (
-        <>
-          <h1>Who wants to be a millionaire?</h1>
-          <button
-            type="button"
-            onClick={() => {
-              setStartGame(true);
-            }}
-          >
-            Start
-          </button>
-        </>
-
+        <div className="container">
+          <div className="start-menu">
+            <div className="start-menu__logo">
+              <img
+                className="start-menu__img"
+                src="main-img.svg"
+                alt="main-img"
+              />
+            </div>
+            <div className="title-container">
+              <h1 className="start-menu__title">Who wants to be a millionaire?</h1>
+              <button
+                className="start-menu__button"
+                type="button"
+                onClick={() => {
+                  setStartGame(true);
+                }}
+              >
+                Start
+              </button>
+            </div>
+          </div>
+        </div>
       ) : (
         <Gameplay />
       )}

@@ -1,0 +1,179 @@
+.gameplay {
+  display: block;
+  background: #E5E5E5;
+  width: 100%;
+  height: 100vh;
+
+  &__menu-opener {
+    display: block;
+
+    position: absolute;
+    right: 20px;
+    top: 21px;
+
+    cursor: pointer;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__title {
+    padding: 136px 16px 97px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 116%;
+    color: #1C1C21;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__label {
+    width: 288px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    background-image: url('../../images/button.svg');
+    background-size: contain;
+
+    &::before {
+      display: block;
+      content: '';
+      height: 1px;
+      width: 17px;
+      background-color: #D0D0D8;
+
+      transform: translate(-99%, 40%);
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      height: 1px;
+      width: 17px;
+      background-color: #D0D0D8;
+
+      position: absolute;
+      transform: translate(287px, 40%);
+    }
+  }
+
+  &__button-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__answer {
+    margin-left: 24px;
+
+    &::first-letter {
+      margin-right: 8px;
+      color: #2869e8cc;
+    }
+  }
+
+  &__total-win {
+    height: 100vh;
+    min-width: 360px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #E5E5E5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateX(-100%);
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__total-win--active {
+    height: 100vh;
+    min-width: 320px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #E5E5E5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateX(0);
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__menu-closer {
+    display: block;
+
+    position: fixed;
+    right: 20px;
+    top: 21px;
+
+    cursor: pointer;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__winlist {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  &__win-item {
+    width: 240px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url('../../images/total-item-mob.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &::before {
+      display: block;
+      content: '';
+      height: 1px;
+      width: 70px;
+      background-color: #D0D0D8;
+      position: absolute;
+
+      transform: translate(-154px, -50%);
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      height: 1px;
+      width: 70px;
+      background-color: #D0D0D8;
+
+      position: absolute;
+      transform: translate(154px, -50%);
+    }
+  }
+}
+
+input {
+  display: none;
+}

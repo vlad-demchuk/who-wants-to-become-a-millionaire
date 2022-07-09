@@ -3,21 +3,21 @@
     "id": 1,
     "title": "How old your elder brother was 10 years before you was born, mate?",
     "letterId": ["A", "B", "C", "D"],
-    "answers": ["10 years", "11 years", "12 years", "14 years"],
-    "trueAnswer": "10 years"
+    "answers": ["A 10 years", "B 11 years", "C 12 years", "D 14 years"],
+    "trueAnswer": "A 10 years"
   },
   {
     "id": 2,
     "title": "question 2",
     "letterId": ["A", "B", "C", "D"],
-    "answers": ["10 years", "11 years", "12 years", "14 years"],
-    "trueAnswer": "10 years"
+    "answers": ["A 10 years", "B 11 years", "C 12 years", "D 14 years"],
+    "trueAnswer": "A 10 years"
   },
   {
     "id": 3,
     "title": "question 3",
     "letterId": ["A", "B", "C", "D"],
-    "answers": ["10 years", "11 years", "12 years", "14 years"],
-    "trueAnswer": "10 years"
+    "answers": ["A 10 years", "B 11 years", "C 12 years", "D 14 years"],
+    "trueAnswer": "A 10 years"
   }
 ]
