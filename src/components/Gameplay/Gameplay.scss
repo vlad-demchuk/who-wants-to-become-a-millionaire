@@ -2,7 +2,11 @@
   display: block;
   background: #E5E5E5;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+
+  @media (min-width: 1024px) {
+    display: flex;
+  }
 
   &__menu-opener {
     display: block;
@@ -18,12 +22,25 @@
     }
   }
 
+  &__quiz {
+    @media (min-width: 1024px) {
+      max-width: 840px;
+      margin: 0 80px;
+    }
+  }
+
   &__title {
     padding: 136px 16px 97px;
     font-weight: 600;
     font-size: 18px;
     line-height: 116%;
     color: #1C1C21;
+    text-align: center;
+
+    @media (min-width: 1024px) {
+      font-size: 32px;
+      text-align-last: left;
+    }
   }
 
   &__buttons {
@@ -31,6 +48,11 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
+
+    @media (min-width: 1240px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
 
   &__label {
@@ -39,8 +61,16 @@
 
     display: flex;
     align-items: center;
+    flex-grow: 1;
+
     background-image: url('../../images/button.svg');
     background-size: contain;
+    background-repeat: no-repeat;
+
+    @media (min-width: 768px) {
+      min-width: 360px;
+      height: 72px;
+    }
 
     &::before {
       display: block;
@@ -49,7 +79,7 @@
       width: 17px;
       background-color: #D0D0D8;
 
-      transform: translate(-99%, 40%);
+      transform: translate(-90%, -80%);
     }
 
     &::after {
@@ -60,7 +90,7 @@
       background-color: #D0D0D8;
 
       position: absolute;
-      transform: translate(287px, 40%);
+      transform: translate(286px, -80%);
     }
   }
 
@@ -80,7 +110,7 @@
 
   &__total-win {
     height: 100vh;
-    min-width: 360px;
+    width: 360px;
     position: fixed;
     top: 0;
     left: 0;
@@ -91,16 +121,21 @@
     align-items: center;
     justify-content: center;
 
-    transform: translateX(-100%);
+    transition: transform 1.2s;
+    transform: translateX(-120%);
 
     @media (min-width: 1024px) {
-      display: none;
+      min-width: 378px;
+      display: flex;
+      position: static;
+      transform: translateX(0);
+      background-color: #fff;
     }
   }
 
   &__total-win--active {
     height: 100vh;
-    min-width: 320px;
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
@@ -134,7 +169,7 @@
 
   &__winlist {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 8px;
   }
 
@@ -158,7 +193,7 @@
       background-color: #D0D0D8;
       position: absolute;
 
-      transform: translate(-154px, -50%);
+      transform: translate(-154px, 0%);
     }
 
     &::after {
@@ -169,11 +204,17 @@
       background-color: #D0D0D8;
 
       position: absolute;
-      transform: translate(154px, -50%);
+      transform: translate(154px, 0%);
     }
   }
 }
 
 input {
   display: none;
+}
+
+.desctop-container {
+  @media (min-width: 1024px) {
+    flex-grow: 1;
+  }
 }

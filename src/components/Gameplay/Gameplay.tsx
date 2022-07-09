@@ -9,6 +9,7 @@ export const Gameplay: React.FC = () => {
   const [questionId, setQuestionId] = useState(0);
   const [question, setQuestion] = useState(questions[0]);
   const [selectedAnswer, setSeletcedAnswer] = useState('');
+  const [totalSum] = useState([...totalWin].reverse());
 
   const [gameOver, setGameOver] = useState(false);
 
@@ -38,40 +39,43 @@ export const Gameplay: React.FC = () => {
     <>
       {!gameOver ? (
         <div className="gameplay">
+          <div className="desctop-container">
+            <img
+              src="menu.svg"
+              alt="menu"
+              className="gameplay__menu-opener"
+              onClick={() => {
+                setOpenMenu(true);
+              }}
+              role="presentation"
+            />
 
-          <img
-            src="menu.svg"
-            alt="menu"
-            className="gameplay__menu-opener"
-            onClick={() => {
-              setOpenMenu(true);
-            }}
-            role="presentation"
-          />
+            <div className="gameplay__quiz">
+              <h2 className="gameplay__title">{question.title}</h2>
+              <div className="gameplay__buttons">
+                {question.answers.map(answer => (
+                  <label
+                    key={answer}
+                    htmlFor={answer}
+                    className="gameplay__label"
+                  // style={{
+                  //   backgroundImage: 'url(button.svg)',
+                  // }}
+                  >
+                    <p className="gameplay__answer">{answer}</p>
+                    <input
+                      type="radio"
+                      name="answer"
+                      id={answer}
+                      value={answer}
+                      checked={selectedAnswer === answer}
+                      onChange={handleSelect}
+                    />
+                  </label>
+                ))}
+              </div>
+            </div>
 
-          <h2 className="gameplay__title">{question.title}</h2>
-
-          <div className="gameplay__buttons">
-            {question.answers.map(answer => (
-              <label
-                key={answer}
-                htmlFor={answer}
-                className="gameplay__label"
-              // style={{
-              //   backgroundImage: 'url(button.svg)',
-              // }}
-              >
-                <p className="gameplay__answer">{answer}</p>
-                <input
-                  type="radio"
-                  name="answer"
-                  id={answer}
-                  value={answer}
-                  checked={selectedAnswer === answer}
-                  onChange={handleSelect}
-                />
-              </label>
-            ))}
           </div>
 
           <div className={cn('gameplay__total-win', { 'gameplay__total-win--active': openMenu })}>
@@ -87,7 +91,7 @@ export const Gameplay: React.FC = () => {
             />
 
             <ul className="gameplay__winlist">
-              {totalWin.reverse().map(amout => (
+              {totalSum.map(amout => (
                 <li key={amout.id} className="gameplay__win-item">{amout.win}</li>
               ))}
             </ul>
