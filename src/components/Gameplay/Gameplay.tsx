@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import questions from '../../api/questions.json';
 import totalWin from '../../api/totalWin.json';
@@ -9,6 +9,7 @@ export const Gameplay: React.FC = () => {
   const [questionId, setQuestionId] = useState(0);
   const [question, setQuestion] = useState(questions[0]);
   const [selectedAnswer, setSeletcedAnswer] = useState('');
+  const [selectDelay, setSelectDelay] = useState(false);
   const [totalSum] = useState([...totalWin].reverse());
 
   const [gameOver, setGameOver] = useState(false);
@@ -17,22 +18,36 @@ export const Gameplay: React.FC = () => {
 
   const handleSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSeletcedAnswer(event.target.value);
+
     if (event.target.value !== question.trueAnswer) {
       setTimeout(() => {
+        (setSelectDelay(true));
+      }, 1000);
+
+      setTimeout(() => {
         (setGameOver(true));
-      }, 2000);
+      }, 3000);
     } else {
+      setTimeout(() => {
+        (setSelectDelay(true));
+      }, 1000);
+
       setQuestionId((current) => {
         return current + 1;
       });
-      setSeletcedAnswer('');
     }
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setQuestion(questions[questionId]);
-    }, 2000);
+    if (questionId !== 0) {
+      // eslint-disable-next-line no-console
+      console.log(123);
+      setTimeout(() => {
+        setQuestion(questions[questionId]);
+        setSeletcedAnswer('');
+        setSelectDelay(false);
+      }, 3000);
+    }
   }, [questionId]);
 
   return (
@@ -57,12 +72,20 @@ export const Gameplay: React.FC = () => {
                   <label
                     key={answer}
                     htmlFor={answer}
-                    className="gameplay__label"
-                  // style={{
-                  //   backgroundImage: 'url(button.svg)',
-                  // }}
+                    // className="gameplay__label"
+                    className={classNames(
+                      'gameplay__label',
+                      { 'gameplay__label--selected': selectedAnswer === answer },
+                      { 'gameplay__label--correct': answer === question.trueAnswer && selectDelay },
+                      { 'gameplay__label--wrong': selectedAnswer === answer && answer !== question.trueAnswer && selectDelay },
+                    )}
+
                   >
-                    <p className="gameplay__answer">{answer}</p>
+                    <p
+                      className="gameplay__answer"
+                    >
+                      {answer}
+                    </p>
                     <input
                       type="radio"
                       name="answer"
@@ -78,7 +101,7 @@ export const Gameplay: React.FC = () => {
 
           </div>
 
-          <div className={cn('gameplay__total-win', { 'gameplay__total-win--active': openMenu })}>
+          <div className={classNames('gameplay__total-win', { 'gameplay__total-win--active': openMenu })}>
 
             <img
               className="gameplay__menu-closer"
@@ -92,7 +115,17 @@ export const Gameplay: React.FC = () => {
 
             <ul className="gameplay__winlist">
               {totalSum.map(amout => (
-                <li key={amout.id} className="gameplay__win-item">{amout.win}</li>
+                <li
+                  key={amout.id}
+                  // className="gameplay__win-item"
+                  className={classNames(
+                    'gameplay__win-item',
+                    { 'gameplay__win-item--grey': question.id > amout.id },
+                    { 'gameplay__win-item--active': question.id === amout.id },
+                  )}
+                >
+                  {amout.win}
+                </li>
               ))}
             </ul>
           </div>
