@@ -5,7 +5,7 @@ Implementation of the world-famous game "Who wants to become a millionaire"
 
 ## Description
 
-The player takes turns an swering one of the 12 questions. Each question has 4 possible answers and only one is correct. If the answer is correct, the player gets to the next question. If the answer is incorrect, the player gets to the final screen with a result.
+The player takes turns answering one of the 12 questions. Each question has 4 possible answers and only one is correct. If the answer is correct, the player gets to the next question. If the answer is incorrect, the player gets to the final screen with a result.
 
 ### Dependencies
 * Node v14.18.2
@@ -22,4 +22,4 @@ The player takes turns an swering one of the 12 questions. Each question has 4 p
 * (available to deploy your application to gh-pages)
 
 ## Troubleshooting
-For any contribution or problem solving you could find me [Telegram](https://t.me/Vlad_Demchuk) and [LinkedIn](https://www.linkedin.com/in/vlad-demchuk-b3071523b/).
+For any contribution or problem solving you could find me here [Telegram](https://t.me/Vlad_Demchuk) and here [LinkedIn](https://www.linkedin.com/in/vlad-demchuk-b3071523b/).
