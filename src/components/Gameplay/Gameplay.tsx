@@ -2,11 +2,11 @@ import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import questions from '../../api/questions.json';
 import totalWin from '../../api/totalWin.json';
-import { GameOver } from '../GameOver/GameOver';
+import { GameOver } from '../GameOver';
 import './Gameplay.scss';
 
 export const Gameplay: React.FC = () => {
-  const [questionId, setQuestionId] = useState(0);
+  const [questionId, setQuestionId] = useState(1);
   const [question, setQuestion] = useState(questions[0]);
   const [selectedAnswer, setSeletcedAnswer] = useState('');
   const [selectDelay, setSelectDelay] = useState(false);
@@ -32,16 +32,20 @@ export const Gameplay: React.FC = () => {
         (setSelectDelay(true));
       }, 1000);
 
-      setQuestionId((current) => {
-        return current + 1;
-      });
+      if (questionId !== 11) {
+        setQuestionId((current) => {
+          return current + 1;
+        });
+      } else {
+        setTimeout(() => {
+          setGameOver(true);
+        }, 3000);
+      }
     }
   };
 
   useEffect(() => {
-    if (questionId !== 0) {
-      // eslint-disable-next-line no-console
-      console.log(123);
+    if (questionId !== 0 || questionId <= 11) {
       setTimeout(() => {
         setQuestion(questions[questionId]);
         setSeletcedAnswer('');
@@ -49,6 +53,14 @@ export const Gameplay: React.FC = () => {
       }, 3000);
     }
   }, [questionId]);
+
+  const handleReset = () => {
+    setGameOver(false);
+    setQuestionId(0);
+    setQuestion(questions[0]);
+    setSeletcedAnswer('');
+    setSelectDelay(false);
+  };
 
   return (
     <>
@@ -72,14 +84,12 @@ export const Gameplay: React.FC = () => {
                   <label
                     key={answer}
                     htmlFor={answer}
-                    // className="gameplay__label"
                     className={classNames(
                       'gameplay__label',
                       { 'gameplay__label--selected': selectedAnswer === answer },
                       { 'gameplay__label--correct': answer === question.trueAnswer && selectDelay },
                       { 'gameplay__label--wrong': selectedAnswer === answer && answer !== question.trueAnswer && selectDelay },
                     )}
-
                   >
                     <p
                       className="gameplay__answer"
@@ -93,6 +103,7 @@ export const Gameplay: React.FC = () => {
                       value={answer}
                       checked={selectedAnswer === answer}
                       onChange={handleSelect}
+                      disabled={selectedAnswer !== ''}
                     />
                   </label>
                 ))}
@@ -117,7 +128,6 @@ export const Gameplay: React.FC = () => {
               {totalSum.map(amout => (
                 <li
                   key={amout.id}
-                  // className="gameplay__win-item"
                   className={classNames(
                     'gameplay__win-item',
                     { 'gameplay__win-item--grey': question.id > amout.id },
@@ -131,7 +141,10 @@ export const Gameplay: React.FC = () => {
           </div>
         </div>
       ) : (
-        <GameOver />
+        <GameOver
+          onReset={handleReset}
+          score={totalWin[questionId].win}
+        />
       )}
     </>
   );

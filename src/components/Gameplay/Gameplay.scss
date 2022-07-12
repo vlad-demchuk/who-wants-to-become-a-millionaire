@@ -45,7 +45,7 @@
 
     @media (min-width: 1024px) {
       font-size: 32px;
-      text-align-last: left;
+      text-align: left;
     }
   }
 
@@ -105,8 +105,6 @@
         background-image: url('../../images/choice-correct-des.svg');
       }
     }
-
-
 
     @media (min-width: 768px) {
       width: 320px;
@@ -237,10 +235,7 @@
         background-image: url('../../images/win-grey-des.svg');
       }
     }
-
-    
   }
-
 }
 
 input {
