@@ -6,11 +6,12 @@ import { GameOver } from '../GameOver';
 import './Gameplay.scss';
 
 export const Gameplay: React.FC = () => {
-  const [questionId, setQuestionId] = useState(1);
+  const [questionId, setQuestionId] = useState(0);
   const [question, setQuestion] = useState(questions[0]);
   const [selectedAnswer, setSeletcedAnswer] = useState('');
   const [selectDelay, setSelectDelay] = useState(false);
-  const [totalSum] = useState([...totalWin].reverse());
+  const [totalSum] = useState([...totalWin]);
+  const [winStage, setWinStage] = useState(0);
 
   const [gameOver, setGameOver] = useState(false);
 
@@ -36,7 +37,13 @@ export const Gameplay: React.FC = () => {
         setQuestionId((current) => {
           return current + 1;
         });
+        setWinStage((current) => {
+          return current + 1;
+        });
       } else {
+        setWinStage((current) => {
+          return current + 1;
+        });
         setTimeout(() => {
           setGameOver(true);
         }, 3000);
@@ -57,6 +64,7 @@ export const Gameplay: React.FC = () => {
   const handleReset = () => {
     setGameOver(false);
     setQuestionId(0);
+    setWinStage(0);
     setQuestion(questions[0]);
     setSeletcedAnswer('');
     setSelectDelay(false);
@@ -125,7 +133,7 @@ export const Gameplay: React.FC = () => {
             />
 
             <ul className="gameplay__winlist">
-              {totalSum.map(amout => (
+              {totalSum.reverse().slice(0, -1).map(amout => (
                 <li
                   key={amout.id}
                   className={classNames(
@@ -143,7 +151,7 @@ export const Gameplay: React.FC = () => {
       ) : (
         <GameOver
           onReset={handleReset}
-          score={totalWin[questionId].win}
+          score={totalWin[winStage].win}
         />
       )}
     </>

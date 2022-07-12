@@ -24,7 +24,7 @@
     "id": 4,
     "title": "Where did Scotch whisky originate?",
     "letterId": ["A", "B", "C", "D"],
-    "answers": ["A Wales", "B Scotland", "C The United States", "D Wales"],
+    "answers": ["A Wales", "B Scotland", "C The United States", "D Sydney"],
     "trueAnswer": "B Scotland"
   },
   {
