@@ -10,7 +10,7 @@ export const Gameplay: React.FC = () => {
   const [question, setQuestion] = useState(questions[0]);
   const [selectedAnswer, setSeletcedAnswer] = useState('');
   const [selectDelay, setSelectDelay] = useState(false);
-  const [totalSum] = useState([...totalWin]);
+  const [totalSum] = useState([...totalWin].reverse().slice(0, -1));
   const [winStage, setWinStage] = useState(0);
 
   const [gameOver, setGameOver] = useState(false);
@@ -133,7 +133,7 @@ export const Gameplay: React.FC = () => {
             />
 
             <ul className="gameplay__winlist">
-              {totalSum.reverse().slice(0, -1).map(amout => (
+              {totalSum.map(amout => (
                 <li
                   key={amout.id}
                   className={classNames(
@@ -151,7 +151,7 @@ export const Gameplay: React.FC = () => {
       ) : (
         <GameOver
           onReset={handleReset}
-          score={totalWin[winStage].win}
+          score={winStage}
         />
       )}
     </>

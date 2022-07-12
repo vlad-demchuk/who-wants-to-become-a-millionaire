@@ -1,9 +1,10 @@
 import React from 'react';
 import './GameOver.scss';
+import totalWin from '../../api/totalWin.json';
 
 type Props = {
   onReset: () => void,
-  score: string,
+  score: number,
 };
 
 export const GameOver: React.FC<Props> = ({ onReset, score }) => {
@@ -12,7 +13,7 @@ export const GameOver: React.FC<Props> = ({ onReset, score }) => {
       <div className="over__page">
         <div>
           <p className="over__score">Total score:</p>
-          <h2 className="over__money">{`${score} earned`}</h2>
+          <h2 className="over__money">{`${totalWin[score].win} earned`}</h2>
         </div>
         <button
           className="over__button"
